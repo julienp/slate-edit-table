@@ -111,6 +111,9 @@ class Example extends React.Component<*, *> {
                 <button onMouseDown={this.onRemoveColumn}>Remove Column</button>
                 <button onMouseDown={this.onRemoveRow}>Remove Row</button>
                 <button onMouseDown={this.onRemoveTable}>Remove Table</button>
+                <button onMouseDown={this.onMergeCellsHorizontally}>
+                    Merge Cells Horizontally
+                </button>
             </div>
         );
     }
@@ -162,6 +165,15 @@ class Example extends React.Component<*, *> {
     onRemoveTable = event => {
         event.preventDefault();
         this.submitChange(tablePlugin.changes.removeTable);
+    };
+
+    onMergeCellsHorizontally = event => {
+        event.preventDefault();
+        const { value } = this.state;
+        this.submitChange(
+            tablePlugin.changes.mergeCellsHorizontallyAtRange,
+            value.selection
+        );
     };
 
     render() {
