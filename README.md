@@ -1,11 +1,8 @@
 # slate-edit-table
 
-[![NPM version](https://badge.fury.io/js/slate-edit-table.svg)](http://badge.fury.io/js/slate-edit-table)
-[![Linux Build Status](https://travis-ci.org/GitbookIO/slate-edit-table.png?branch=master)](https://travis-ci.org/GitbookIO/slate-edit-table)
-
 A Slate plugin to handle table edition.
 
-Demo: [gitbookio.github.io/slate-edit-table/](https://gitbookio.github.io/slate-edit-table/)
+Demo: [https://julienp.github.io/slate-edit-table/](https://julienp.github.io/slate-edit-table/)
 
 ## Install
 
