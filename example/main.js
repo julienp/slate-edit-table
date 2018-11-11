@@ -9,7 +9,6 @@ import { type Block } from 'slate';
 import { Editor } from 'slate-react';
 
 import PluginEditTable from '../lib/';
-import alignPlugin from './aligns';
 import INITIAL_VALUE from './value';
 
 const tablePlugin = PluginEditTable({
@@ -36,7 +35,7 @@ function renderNode(props) {
     }
 }
 
-const plugins = [tablePlugin, alignPlugin, { renderNode }];
+const plugins = [tablePlugin, { renderNode }];
 
 type NodeProps = {
     attributes: Object,
@@ -72,15 +71,9 @@ class TableRow extends React.Component<NodeProps> {
 
 class TableCell extends React.Component<NodeProps> {
     render() {
-        const { attributes, children, node } = this.props;
+        const { attributes, children } = this.props;
 
-        const textAlign = node.get('data').get('align', 'left');
-
-        return (
-            <td style={{ textAlign }} {...attributes}>
-                {children}
-            </td>
-        );
+        return <td {...attributes}>{children}</td>;
     }
 }
 
@@ -118,16 +111,6 @@ class Example extends React.Component<*, *> {
                 <button onMouseDown={this.onRemoveColumn}>Remove Column</button>
                 <button onMouseDown={this.onRemoveRow}>Remove Row</button>
                 <button onMouseDown={this.onRemoveTable}>Remove Table</button>
-                <br />
-                <button onMouseDown={e => this.onSetAlign(e, 'left')}>
-                    Set align left
-                </button>
-                <button onMouseDown={e => this.onSetAlign(e, 'center')}>
-                    Set align center
-                </button>
-                <button onMouseDown={e => this.onSetAlign(e, 'right')}>
-                    Set align right
-                </button>
             </div>
         );
     }
@@ -179,13 +162,6 @@ class Example extends React.Component<*, *> {
     onRemoveTable = event => {
         event.preventDefault();
         this.submitChange(tablePlugin.changes.removeTable);
-    };
-
-    onSetAlign = (event, align) => {
-        event.preventDefault();
-        this.submitChange(change =>
-            alignPlugin.changes.setColumnAlign(change, align)
-        );
     };
 
     render() {
